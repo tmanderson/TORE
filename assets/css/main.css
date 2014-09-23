@@ -1,0 +1,154 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* entypo */
+[class*="entypo-"]:before {
+	  font-family: 'entypo', sans-serif;
+}
+
+html {
+	font: 62.5%/1.4 sans-serif;
+}
+
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	display: flex;
+	flex-direction: row;
+	font-size: 1.6em;
+}
+
+aside {
+	align-items: stretch;
+	border-right: 2px solid rgba(220,220,220,0.6);
+	display: flex;
+	flex-direction: column;
+	flex: 0.2;
+	overflow: hidden;
+}
+
+main {
+	display: flex;
+	flex: 0.8;
+}
+
+aside h1 {
+	background-color: #333;
+	color: #FFF;
+	font-size: 1.6em;
+	line-height: 2em;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	text-indent: 0.3em;
+	width: 100%;
+	z-index: 2;
+}
+
+aside menu {
+	background-color: rgba(255,255,255,1);
+	border: 2px solid rgba(240,240,240,0.8);
+	border-bottom: none;
+	position: absolute;
+	left: 0.2em;
+	right: 0.2em;
+	top: 1.7em;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	transform: translate3d(0,-150%,0);
+	transition: transform 150ms ease;
+	z-index: 1;
+}
+
+aside menu.results {
+	transform: translate3d(0,1.7em,0);
+}
+
+aside menu div {
+	background-color: #FFF;
+	border-bottom: 2px solid rgba(240,240,240,0.8);
+	color: #333;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 0.5em;
+	white-space: nowrap;
+}
+
+aside menu div:hover {
+	background-color: rgba(78,179,229,1);
+	color: #FFF;
+}
+
+aside header, aside footer {
+	background-color: #333;
+	display: flex;
+	flex: 0.1;
+	max-height: 50px;
+	position: relative;
+	width: 100%;
+}
+
+aside header button, aside footer button {
+	position: absolute;
+	height: 40px;
+	padding: 0;
+	margin: 0;
+	width: 40px;
+	top: 0.3em;
+	right: 0.5em;
+	z-index: 4;
+}
+
+aside header button {
+	border-right: 0.5em solid #333;
+	right: 0em;
+}
+
+aside header input {
+	display: block;
+	height: 1.8em;
+	position: absolute;
+	left: 0.2em;
+	top: 0.15em;
+	z-index: 3;
+
+	transform: translate3d(100%,0,0);
+}
+
+button:active + menu + input,
+aside header input:focus,
+menu:active + input,
+menu:hover + input {
+	transform: translate3d(0,0,0);
+}
+
+aside button:active,
+aside button:hover,
+aside button:focus {
+	padding: 0;
+	margin: 0;
+}
+
+aside ul {
+	flex: 0.85;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+aside footer {
+	align-self: flex-end;
+}
+
+main section {
+	display: flex;
+	flex-direction: column;
+}
+
+main section div {
+	display: flex;
+	flex-direction: row;
+}

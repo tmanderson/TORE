@@ -1,0 +1,23 @@
+input {
+    line-height: 1.5em;
+    margin: .2em;
+    padding: .2em .5em;
+    border: 1px solid rgba(0,0,0,.3);
+    box-shadow: none;
+    border-radius: .2em;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #7fdbff;
+    box-shadow: .1em .1em 0 rgba(0, 0, 0, .2);
+    transition: all 0.3s ease;
+}
+
+input:invalid {
+    border-color: #ff4136;
+}
+
+input:focus:invalid {
+    border-color: #ff851b;
+}

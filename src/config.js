@@ -14,4 +14,4 @@ requirejs.config({
 	deps: [ 'jquery', 'underscore', 'backbone' ]
 });
 
-google.setOnLoadCallback(require.bind(require, ['main']));
+google.setOnLoadCallback(require.bind(require, ['util/jquery', 'main']));

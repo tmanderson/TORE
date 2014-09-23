@@ -38,7 +38,8 @@ define(['backbone', 'view/searchItem'], function(Backbone, SearchItem) {
 		},
 
 		handleButton: function(e) {
-			$(e.target).siblings('input').focus();
+			var $btn = $(e.target).toggleClass('active');
+			if($btn.is('.active')) $btn.siblings('input').wait(250).focus();
 		},
 
 		handleKey: function(e) {

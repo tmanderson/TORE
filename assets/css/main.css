@@ -63,7 +63,7 @@ aside menu {
 	z-index: 1;
 }
 
-aside menu.results {
+aside button.active + menu.results {
 	transform: translate3d(0,1.7em,0);
 }
 
@@ -110,18 +110,17 @@ aside header button {
 aside header input {
 	display: block;
 	height: 1.8em;
-	position: absolute;
 	left: 0.2em;
+	position: absolute;
+	right: 0.5em;
 	top: 0.15em;
+	width: 100%;
 	z-index: 3;
 
 	transform: translate3d(100%,0,0);
 }
 
-button:active + menu + input,
-aside header input:focus,
-menu:active + input,
-menu:hover + input {
+button.active + menu + input {
 	transform: translate3d(0,0,0);
 }
 

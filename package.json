@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "A non-trivial JavaScript application in many forms",
   "main": "index.html",
+  "repository": {
+	  "type": "git",
+	  "url": "https://tmanderson@bitbucket.org/tmanderson/tore.git"
+  },
   "scripts": {
 	"postinstall": "mv ./node_modules ./lib",
 	"preupdate": "mv ./lib ./node_modules",

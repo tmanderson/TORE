@@ -8,7 +8,7 @@
     "url": "https://tmanderson@bitbucket.org/tmanderson/tore.git"
   },
   "scripts": {
-    "postinstall": "mv ./node_modules ./lib",
+    "postinstall": "rm -rf ./lib; mv ./node_modules ./lib",
     "preupdate": "mv ./lib ./node_modules",
     "update": "mv ./lib .node_modules",
     "postupdate": "mv ./node_modules ./lib"

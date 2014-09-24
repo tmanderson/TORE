@@ -183,3 +183,44 @@ main section h2 {
 main section div:last-child {
 	flex: 0.05;
 }
+
+body > article {
+	background-color: rgba(255,255,255,0.7);
+	bottom: 0;
+	left: 0;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: opacity 150ms ease;
+	z-index: 10;
+}
+
+body > article > main {
+	background-color: #FFF;
+	border: 2px solid #333;
+	border-bottom: none;
+	margin: 10% auto 0;
+	position: relative;
+	transform: translate3d(0,20%,0);
+	transition: transform 250ms ease;
+	height: 90%;
+	width: 70%;
+}
+
+body > article.active {
+	opacity: 1;
+	pointer-events: all;
+	transform: translate3d(0, 0, 0);
+}
+
+body > article.active > main {
+	transform: translate3d(0, 0, 0);
+}
+
+body > article.active > main iframe {
+	display: block;
+	height: 100%;
+	width: 100%;
+}

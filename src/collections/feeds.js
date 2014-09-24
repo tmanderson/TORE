@@ -1,9 +1,11 @@
 /* global google */
-define(['backbone'], function(Backbone) {
+define(['backbone', 'models/feed'], function(Backbone, FeedModel) {
 	'use strict';
 
 	return Backbone.Collection.extend({
 		query: null,
+
+		model: FeedModel,
 
 		initialize: function() {
 			_.bindAll(this, 'search', 'parse', 'add', 'trigger');

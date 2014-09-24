@@ -3,8 +3,9 @@ define(['backbone', 'view/searchItem'], function(Backbone, SearchItem) {
 
 	return Backbone.View.extend({
 		events: {
-			'click button': 'handleButton',
-			'keyup input' : 'handleKey'
+			'click button' 	: 'handleButton',
+			'keyup input'  	: 'handleKey',
+			'click .result' : 'handleResult'
 		},
 
 		initialize: function() {
@@ -49,6 +50,12 @@ define(['backbone', 'view/searchItem'], function(Backbone, SearchItem) {
 			}
 
 			this.$('menu').removeClass('results');
+		},
+
+		handleResult: function(e) {
+			var modelIndex = $(e.target).index();
+
+			this.collection.trigger('save', this.collection.at(modelIndex));
 		}
 	});
 });

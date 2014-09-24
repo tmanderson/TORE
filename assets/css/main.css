@@ -30,8 +30,8 @@ aside {
 }
 
 main {
-	display: flex;
 	flex: 0.8;
+	overflow: scroll;
 }
 
 aside h1 {
@@ -138,16 +138,48 @@ aside ul {
 	padding: 0;
 }
 
+aside .saved div {
+	border-bottom: 2px solid rgba(240,240,240,0.8);
+	cursor: pointer;
+	padding: 0.5em;
+}
+
+aside .saved div:hover {
+	background-color: rgba(78,179,229,1);
+	color: #FFF;
+}
+
 aside footer {
 	align-self: flex-end;
 }
 
 main section {
-	display: flex;
-	flex-direction: column;
-}
-
-main section div {
+	cursor: pointer;
 	display: flex;
 	flex-direction: row;
+	padding: 0.6em 0 0;
+	border-bottom: 2px solid #DDD;
+}
+
+main section:hover {
+	background-color: rgba(229,229,229,0.7);
+}
+
+main section div, main section h2 {
+	display: inline-block;
+	font-size: 1em;
+	flex: 0.1;
+	overflow: hidden;
+	padding: 0 0.2em;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+main section h2 {
+	flex: 0.5;
+	margin: 0;
+}
+
+main section div:last-child {
+	flex: 0.05;
 }

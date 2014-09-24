@@ -4,14 +4,14 @@
   "description": "A non-trivial JavaScript application in many forms",
   "main": "index.html",
   "repository": {
-	  "type": "git",
-	  "url": "https://tmanderson@bitbucket.org/tmanderson/tore.git"
+    "type": "git",
+    "url": "https://tmanderson@bitbucket.org/tmanderson/tore.git"
   },
   "scripts": {
-	"postinstall": "mv ./node_modules ./lib",
-	"preupdate": "mv ./lib ./node_modules",
-	"update": "mv ./lib .node_modules",
-	"postupdate": "mv ./node_modules ./lib"
+    "postinstall": "mv ./node_modules ./lib",
+    "preupdate": "mv ./lib ./node_modules",
+    "update": "mv ./lib .node_modules",
+    "postupdate": "mv ./node_modules ./lib"
   },
   "author": "Mitch Anderson",
   "license": "BSD-2-Clause",
@@ -20,6 +20,8 @@
     "backbone": "~1.1.2",
     "requirejs": "~2.1.15",
     "jquery": "~2.1.1",
-	"picnic": "git://github.com/picnicss/picnic.git"
+    "picnic": "git://github.com/picnicss/picnic.git",
+    "requirejs-text": "~2.0.0",
+    "moment": "~2.8.3"
   }
 }

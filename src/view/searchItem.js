@@ -3,7 +3,8 @@ define(['backbone', 'view/searchItem'], function(Backbone, SearchItem) {
 
 	return Backbone.View.extend({
 		tagName: 'div',
-
+		className: 'result',
+		
 		initialize: function() {
 			this.listenTo(this.model, 'remove', this.remove);
 			this.render();

@@ -91,7 +91,7 @@ aside header, aside footer {
 	width: 100%;
 }
 
-aside header button, aside footer button {
+aside button {
 	position: absolute;
 	height: 40px;
 	padding: 0;
@@ -100,6 +100,22 @@ aside header button, aside footer button {
 	top: 0.3em;
 	right: 0.5em;
 	z-index: 4;
+}
+
+aside .saved div .settings {
+	border-bottom: 2px solid rgba(240,240,240,0.8);
+	top: 0;
+	bottom: -2px;
+	left: 0;
+}
+
+aside .saved div .settings button {
+	border: none;
+	border-radius: 0;
+	top: 0;
+	bottom: -0.2em;
+	box-shadow: none;
+	height: 100%;
 }
 
 aside header button {
@@ -124,11 +140,12 @@ button.active + menu + input {
 	transform: translate3d(0,0,0);
 }
 
+aside button,
 aside button:active,
 aside button:hover,
 aside button:focus {
-	padding: 0;
-	margin: 0;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 aside ul {
@@ -136,17 +153,74 @@ aside ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	transform: translate3d(0,0,0);
+	transition: transform 150ms ease;
 }
 
-aside .saved div {
+aside.settings ul.saved {
+	transform: translate3d(20%,0,0);
+}
+
+aside .saved > div {
 	border-bottom: 2px solid rgba(240,240,240,0.8);
 	cursor: pointer;
-	padding: 0.5em;
+	padding: 0.2em 0.5em 0;
 }
 
-aside .saved div:hover {
+aside .saved > div.active {
+	background-color: rgba(255, 255, 0, 0.2);
+}
+
+aside .saved > div:hover {
 	background-color: rgba(78,179,229,1);
 	color: #FFF;
+}
+
+aside .saved > div.active:hover {
+	background-color: rgba(255, 255, 0, 0.2);
+	color: #333;
+}
+
+aside.settings .saved div:hover {
+	background-color: #FFF;
+	color: #333;
+}
+
+aside .saved > div {
+	white-space: nowrap;
+	position: relative;
+}
+
+aside .saved > div > .settings {
+	position: absolute;
+	transform: translate3d(-100%,0,0);
+	text-align: center;
+	width: 20%;
+}
+
+aside .saved h2 {
+	font-size: 1em;
+	max-width: 90%;
+	line-height: 2em;
+	margin: 0;
+	padding: 0.4em 0 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+aside .saved .unread {
+	background-color: rgba(78,179,229,1);
+	border-radius: 5px;
+	color: #FFF;
+	font-size: 0.6em;
+	margin-top: 0.6em;
+	padding: 0.2em 0.5em;
+	position: absolute;
+	right: 1em;
+}
+
+aside .saved div h2, aside .saved div .settings {
+	display: inline-block;
 }
 
 aside footer {
@@ -198,9 +272,13 @@ body > article {
 }
 
 body > article > main {
+	align-items: stretch;
+	align-content: stretch;
 	background-color: #FFF;
 	border: 2px solid #333;
 	border-bottom: none;
+	display: flex;
+	flex-direction: column;
 	margin: 10% auto 0;
 	position: relative;
 	transform: translate3d(0,20%,0);
@@ -208,6 +286,21 @@ body > article > main {
 	height: 90%;
 	width: 70%;
 }
+
+body > article main header {
+	flex: 0.1;
+	height: 60px;
+	max-height: 140px;
+	padding: 0.5em;
+}
+
+body > article > main > div {
+	align-items: stretch;
+	align-content: stretch;
+	align-self: stretch;
+	flex: 1;
+	display: flex;
+} 
 
 body > article.active {
 	opacity: 1;
@@ -220,7 +313,7 @@ body > article.active > main {
 }
 
 body > article.active > main iframe {
-	display: block;
-	height: 100%;
-	width: 100%;
+	flex: 1;
+	transition: opacity 150ms ease;
+	transform: translate3d(0,0,0);
 }

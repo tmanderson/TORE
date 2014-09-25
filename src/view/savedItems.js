@@ -9,10 +9,14 @@ define(['backbone', 'view/savedItem'], function(Backbone, SavedItemView) {
 
 			this.views = [];
 
-			this.listenTo(this.collection, 'add', this.addItem);
+			this.listenTo(this.collection, 'add', this.addNewItem);
 			this.listenTo(this.collection, 'remove', this.removeItem);
 
 			this.collection.each(this.addItem);
+		},
+
+		addNewItem: function(model) {
+			this.addItem(model).click();
 		},
 
 		addItem: function(model) {
@@ -22,15 +26,13 @@ define(['backbone', 'view/savedItem'], function(Backbone, SavedItemView) {
 				})
 			);
 
-			this.$el.append(
-				_.last(this.views).render()
-			);
+			return _.last(this.views).render().appendTo(this.$el);
 		},
 
 		removeItem: function(model) {
 			var view = _.findWhere(this.views, { model: model });
 			view.remove();
-			this.view.splice(this.views.indexOf(view), 1);
+			this.views.splice(this.views.indexOf(view), 1);
 		}
 	});
 });

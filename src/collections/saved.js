@@ -5,16 +5,13 @@ define(['backbone', 'models/feed'], function(Backbone, FeedModel) {
 		model: FeedModel,
 
 		initialize: function() {
+			_.bindAll(this, 'add');
+
 			this.load();
 
 			this.on('add', this.save);
 			this.on('remove', this.save);
 			this.on('change', this.save);
-		},
-
-		add: function(model) {
-			model.collection = this;
-			return Backbone.Collection.prototype.add.apply(this, arguments);
 		},
 
 		save: function() {

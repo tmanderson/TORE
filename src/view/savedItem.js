@@ -1,24 +1,32 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'text!view/savedItem.html'], function(Backbone, html) {
 	'use strict';
 
 	return Backbone.View.extend({
-		tagName: 'div',
+		template: _.template(html),
 
 		events: {
-			'click': 'activate'
+			'click': 'toggleActive'
 		},
 
 		initialize: function() {
-			_.bindAll(this, 'render', 'activate');
+			_.bindAll(this, 'render');
+			this.$el.attr('data-id', this.model.id);
+			
+			this.listenTo(this.model, 'change:unread', this.render);
+			this.listenTo(this.model, 'remove', this.remove);
 		},
 
 		render: function() {
-			return this.$el.html(this.model.get('title'));
-
+			return this.$el.html(
+				this.template(this.model.toJSON())
+			);
 		},
 
-		activate: function() {
-			this.model.collection.activate(this.model);
+		toggleActive: function(e) {
+			if($(e.target).closest('.settings').length) return;
+
+			this.$el.toggleClass('active')
+				.siblings().removeClass('active');
 		}
 	});
 });

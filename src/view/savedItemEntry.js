@@ -6,10 +6,6 @@ define(['backbone', 'text!view/savedItemEntry.html'], function(Backbone, templat
 
 		template: _.template(template),
 
-		events: {
-			'click': 'activate'
-		},
-
 		initialize: function() {
 			this.render();
 		},
@@ -18,8 +14,9 @@ define(['backbone', 'text!view/savedItemEntry.html'], function(Backbone, templat
 			return this.$el.html( this.template(this.model.toJSON()) );
 		},
 
-		activate: function() {
-			
+		remove: function() {
+			this.$el.remove();
+			this.stopListening();
 		}
 	});
 });

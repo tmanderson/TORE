@@ -5,7 +5,7 @@ define(['backbone', 'view/searchItem'], function(Backbone, SearchItem) {
 		events: {
 			'click button' 	: 'handleButton',
 			'keyup input'  	: 'handleKey',
-			'click .result' : 'handleResult'
+			'click .result' : 'closeMenu'
 		},
 
 		initialize: function() {
@@ -52,10 +52,9 @@ define(['backbone', 'view/searchItem'], function(Backbone, SearchItem) {
 			this.$('menu').removeClass('results');
 		},
 
-		handleResult: function(e) {
-			var modelIndex = $(e.target).index();
-
-			this.collection.trigger('save', this.collection.at(modelIndex));
+		closeMenu: function() {
+			var $results = this.$('menu');
+			setTimeout(_.bind($results.removeClass, $results, 'results'), 250);
 		}
 	});
 });

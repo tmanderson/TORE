@@ -5,8 +5,6 @@ define(['backbone', 'models/feed'], function(Backbone, FeedModel) {
 	return Backbone.Collection.extend({
 		query: null,
 
-		model: FeedModel,
-
 		initialize: function() {
 			_.bindAll(this, 'search', 'parse', 'add', 'trigger');
 			window.processSearchResults = this.resolve;

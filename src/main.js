@@ -1,33 +1,68 @@
 define([
 	'backbone',
+	'app',
+
 	'collections/feeds',
 	'collections/saved',
-	'view/search',
-	'view/savedItems',
-	'view/savedItemEntries'
-], function(Backbone, Feeds, SavedFeeds, SearchView, SavedItemsView, SavedItemEntriesView) {
+	
+	'view/sidebar',
+	'view/savedItemEntries',
+	'view/article'
+], function(Backbone, app, Feeds, SavedFeeds, SidebarView, SavedItemEntriesView, ArticleView) {
 	'use strict';
 
-	var feeds = new Feeds(),
-		saved = new SavedFeeds(),
-		views = {};
+	var App = Backbone.View.extend({
+		events: {
+			'save aside'	: 'addFeed',
+			'select aside' 	: 'viewFeed',
+			'remove aside'	: 'removeFeed',
+			'select main'	: 'viewArticle'
+		},
 
-	new SearchView({
-		el: $('aside header'),
-		collection: feeds
+		initialize: function() {
+			this.feeds = new Feeds();
+			this.saved = new SavedFeeds();
+
+			this.sidebar = new SidebarView({
+				el: this.$('aside'),
+				collection: {
+					feeds: this.feeds,
+					saved: this.saved 
+				}
+			});
+
+			this.feed = new SavedItemEntriesView({
+				el: this.$('main'),
+				collection: this.saved
+			});
+
+			this.article = new ArticleView({
+				el: this.$('article')
+			});
+		},
+
+		addFeed: function(e, model) {
+			this.saved.add(model.toJSON());
+		},
+
+		removeFeed: function(e, model) {
+			this.saved.remove(model);
+			return false;
+		},
+
+		viewFeed: function(e, model) {
+			model.fetch().done(
+				_.bind(this.feed.renderEntries, model)
+			);
+			return false;
+		},
+
+		viewArticle: function(e, model) {
+			this.article.render(model);
+		}
 	});
 
-	new SavedItemsView({
-		el: $('aside .saved'),
-		collection: saved
-	});
-
-	new SavedItemEntriesView({
-		el: $('main'),
-		collection: saved
-	});
-	
-	feeds.on('save', function(model) {
-		saved.add(model);
+	new App({
+		el: document.body
 	});
 });

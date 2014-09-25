@@ -1,4 +1,4 @@
-define(['backbone', 'text!view/savedItemEntry.html'], function(Backbone, template) {
+define(['backbone', 'moment', 'text!view/savedItemEntry.html'], function(Backbone, moment, template) {
 	'use strict';
 
 	return Backbone.View.extend({
@@ -11,7 +11,11 @@ define(['backbone', 'text!view/savedItemEntry.html'], function(Backbone, templat
 		},
 
 		render: function() {
-			return this.$el.html( this.template(this.model.toJSON()) );
+			return this.$el.html(
+				this.template(
+					_.extend(this.model.toJSON(), { moment: moment })
+				)
+			);
 		},
 
 		remove: function() {

@@ -1,4 +1,4 @@
 <h2><%=title%></h2>
 <div><%=host%></div>
-<div><%= moment(publishedDate).fromNow() %></div>
+<div><%= moment(new Date(publishedDate)).fromNow() %></div>
 <div><button>...</button></div>

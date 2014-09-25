@@ -1,6 +1,5 @@
 define([
 	'backbone',
-	'app',
 
 	'collections/feeds',
 	'collections/saved',
@@ -8,7 +7,7 @@ define([
 	'view/sidebar',
 	'view/savedItemEntries',
 	'view/article'
-], function(Backbone, app, Feeds, SavedFeeds, SidebarView, SavedItemEntriesView, ArticleView) {
+], function(Backbone, Feeds, SavedFeeds, SidebarView, SavedItemEntriesView, ArticleView) {
 	'use strict';
 
 	var App = Backbone.View.extend({

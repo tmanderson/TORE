@@ -31,6 +31,7 @@ define([
 
 		saveItem: function(e) {
 			var modelIndex = $(e.target).closest('.result').index();
+			this.$('header button').click();
 			this.$el.trigger('save', this.collection.feeds.at(modelIndex));
 		},
 

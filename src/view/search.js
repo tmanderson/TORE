@@ -44,12 +44,19 @@ define(['backbone', 'view/searchItem'], function(Backbone, SearchItem) {
 		},
 
 		handleKey: function(e) {
+			var $menu = this.$('menu');
+
 			switch(e.which) {
 				case 13: this.collection.search(e.target.value); break;
-				case 27: e.target.blur();
-			}
-
-			this.$('menu').removeClass('results');
+				case 27: 
+					if($menu.is('.results')) {
+						this.closeMenu();
+					}
+					else {
+						this.$('input').blur()
+							.parent().find('button').toggleClass('active');
+					}
+			}	
 		},
 
 		closeMenu: function() {

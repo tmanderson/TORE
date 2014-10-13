@@ -1,4 +1,4 @@
-define(['backbone', 'text!view/article.html'], function(Backbone, html) {
+define(['backbone', 'text!view/html/article.html'], function(Backbone, html) {
 	'use strict';
 
 	return Backbone.View.extend({

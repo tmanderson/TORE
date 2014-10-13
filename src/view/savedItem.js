@@ -1,4 +1,4 @@
-define(['backbone', 'text!view/savedItem.html'], function(Backbone, html) {
+define(['backbone', 'text!view/html/savedItem.html'], function(Backbone, html) {
 	'use strict';
 
 	return Backbone.View.extend({

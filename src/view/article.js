@@ -9,7 +9,7 @@ define(['backbone', 'text!view/html/article.html'], function(Backbone, html) {
 		},
 
 		close: function(e) {
-			if(e.target.tagName === 'ARTICLE') {
+			if(!e || e.target.tagName === 'ARTICLE') {
 				//	trigger CSS animation
 				var $iframe = this.$('iframe').css('opacity', 0);
 

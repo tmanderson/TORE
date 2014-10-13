@@ -59,8 +59,18 @@ define(['backbone'], function(Backbone) {
 		},
 
 		getEntry: function(index) {
-			this.set('unread', Math.max(0, this.get('unread') - 1));
-			return new Backbone.Model(this.get('entries')[index]);
+			var model = new Backbone.Model(this.get('entries')[index]);
+
+			if(!model.get('read')) {
+				//	reduce our "new" count
+				this.set('unread', Math.max(0, this.get('unread') - 1));
+				//	set the read attribute (on the actual feed item object)
+				this.get('entries')[index].read = true;
+				//	propagate the change to localStorage
+				this.collection.trigger('change');
+			}
+			
+			return model;
 		}
 	});
 });

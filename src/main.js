@@ -12,6 +12,8 @@ define([
 
 	var App = Backbone.View.extend({
 		events: {
+			'keydown' 		: 'handleKey',
+
 			'save aside'	: 'addFeed',
 			'select aside' 	: 'viewFeed',
 			'remove aside'	: 'removeFeed',
@@ -38,6 +40,10 @@ define([
 			this.article = new ArticleView({
 				el: this.$('article')
 			});
+		},
+
+		handleKey: function(e) {
+			if(e.which === 27) this.article.close();
 		},
 
 		addFeed: function(e, model) {

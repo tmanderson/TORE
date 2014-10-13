@@ -39,7 +39,7 @@ define(['backbone', 'view/searchItem'], function(Backbone, SearchItem) {
 		},
 
 		handleButton: function(e) {
-			var $btn = $(e.target).toggleClass('active'),
+			var $btn = $(e.target).closest('button').toggleClass('active'),
 				$input = $btn.siblings('input');
 
 			if($btn.is('.active')) setTimeout(_.bind($input.focus, $input), 250);

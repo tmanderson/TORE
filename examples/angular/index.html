@@ -38,7 +38,7 @@
                                         $event.which==27 && (sidebar.query ? sidebar.resetQuery() : sidebar.toggleSearch(false))" />
         </header>
         <ul class="saved">
-            <div ng-repeat="feed in sidebar.feeds" ng-click="main.toggleFeed(feed)">
+            <div ng-repeat="feed in sidebar.feeds" ng-click="main.toggleFeed(feed)" ng-class="{ active: feed.active }">
                 <div class="settings">
                     <button class="button error" ng-click="sidebar.removeFeed(feed); $event.stopPropagation();">
                         <span class="entypo-cancel"></span>
@@ -57,6 +57,9 @@
         </footer>
     </aside>
     <main>
+        <section ng-if="!main.activeFeeds.length">
+            <h2>NO FEEDS SELECTED</h2>
+        </section>
         <section ng-repeat="feed in main.activeFeeds">
             <div ng-repeat="entry in feed.entries" ng-click="main.entry=entry">
                 <h2>{{ entry.title }}</h2>

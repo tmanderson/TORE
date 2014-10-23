@@ -7,6 +7,8 @@ TORE.controller('MainController', ['$sce', '$sceDelegate', 'feeds', function($sc
     this.toggleFeed = function(feed) {
         var active = _.findWhere(this.activeFeeds, { link: feed.link });
 
+        feed.active = !feed.active;
+        
         if(active) {
             this.activeFeeds.splice(this.activeFeeds.indexOf(active), 1);
         }

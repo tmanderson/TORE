@@ -15,7 +15,7 @@ define([
 			'keydown' 		: 'handleKey',
 
 			'save aside'	: 'addFeed',
-			'select aside' 	: 'viewFeed',
+			'select aside' 	: 'toggleFeed',
 			'remove aside'	: 'removeFeed',
 			'select main'	: 'viewArticle'
 		},
@@ -55,10 +55,11 @@ define([
 			return false;
 		},
 
-		viewFeed: function(e, model) {
+		toggleFeed: function(e, model) {
 			model.fetch().done(
 				_.bind(this.feed.renderEntries, model)
 			);
+
 			return false;
 		},
 

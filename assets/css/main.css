@@ -170,6 +170,7 @@ aside .saved > div {
 
 aside .saved > div.active {
 	background-color: rgba(255, 255, 0, 0.2);
+	border-bottom-color: rgba(180,180,180,1);
 }
 
 aside .saved > div:hover {
@@ -240,6 +241,11 @@ main section {
 	flex-direction: column;
 	padding: 0;
 	position: relative;
+}
+
+main section > h2 {
+	color: rgba(200,200,200,1);
+	text-align: center;
 }
 
 main section > div {

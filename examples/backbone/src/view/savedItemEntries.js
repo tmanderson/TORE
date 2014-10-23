@@ -1,50 +1,60 @@
-define(['backbone', 'view/savedItemEntry'], function(Backbone, EntryView) {
+define(['backbone', 'text!view/html/savedItemEntry.html'], function(Backbone, EntryHtml) {
 	'use strict';
 
 	return Backbone.View.extend({
+		feeds: null,
+
+		entryTemplate: _.template(EntryHtml),
+
 		events: {
 			'click section': 'selectItem'
 		},
 
 		initialize: function() {
-			_.bindAll(this, 'renderEntries', 'removeItems');
+			_.bindAll(this, 'renderEntries', 'selectItem');
+			this.feeds = [];
+			this.$section = $('<section />');
 		},
 
 		renderEntries: function(savedItemModel) {
-			this.removeItems();
+			var activeIndex = _.indexOf(this.feeds, savedItemModel),
+				url = savedItemModel.get('url'),
+				$section;
 
-			if(savedItemModel === this.model) {	
-				this.model = null;
-				return;
+			if(activeIndex >= 0) {
+				this.$('section[data-url="' + url + '"]').remove();
+				this.feeds.splice(_.indexOf(this.feeds, savedItemModel));
+			}
+			else {
+				this.feeds.push(savedItemModel);	
 			}
 
-			this.model = savedItemModel;
+			if(!this.feeds.length) {
+				this.$el.html('<section class="no-feeds"><h2>NO FEEDS SELECTED</h2></section>');
+			}
+			else {
+				this.$('.no-feeds').remove();
+			}
 
-			this.views = _.map(this.model.get('entries'), function(entry) {
+			//	activeIndex >= 0 						--> We removed a section
+			//	activeIndex >= 0 && !this.feeds.length 	--> First feed section added
+			if(activeIndex >= 0 || activeIndex >= 0 && !this.feeds.length) return;
 
-				entry.host = savedItemModel.get('host');
-
-				return new EntryView({
-					model: new Backbone.Model(entry)
-				});
-			});
+			$section = this.$section.clone().attr('data-url', url);
 
 			this.$el.append(
-				_.pluck(this.views, '$el')
+				$section.html(
+					_.map(_.last(this.feeds).get('entries'), function(entry) {
+						entry.host = savedItemModel.get('host');
+						return this.entryTemplate(entry);
+					}, this).join('')
+				)
 			);
-		},
-
-		removeItems: function() {
-			_.each(this.views, function(view) {
-				view.remove();
-			});
-
-			this.$el.empty();
 		},
 
 		selectItem: function(e) {
 			var index = $(e.target).closest('section').index();
-			this.$el.trigger('select', this.model.getEntry(index));
+			this.$el.trigger('select', this.feeds[index].getEntry(index));
 			return false;
 		}
 	});

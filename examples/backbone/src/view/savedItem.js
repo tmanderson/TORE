@@ -25,8 +25,7 @@ define(['backbone', 'text!view/html/savedItem.html'], function(Backbone, html) {
 		toggleActive: function(e) {
 			if($(e.target).closest('.settings').length) return;
 
-			this.$el.toggleClass('active')
-				.siblings().removeClass('active');
+			this.$el.toggleClass('active');
 		}
 	});
 });

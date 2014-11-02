@@ -1,0 +1,29 @@
+<main>
+	<section ng-if="!main.activeFeeds.length">
+		<h2>NO FEEDS SELECTED</h2>
+	</section>
+
+	<section ng-repeat="feed in main.activeFeeds">
+		<div ng-repeat="entry in feed.entries" ng-click="main.entry=entry">
+			<h2>{{ entry.title }}</h2>
+			<div></div>
+			<div>{{ entry.publishedDate }}</div>
+			<div>
+				<button class="button dull">
+					<span class="entypo-dot-3"></span>
+				</button>
+			</div>
+		</div>
+	</section>
+</main>
+
+<article ng-class="{ active: main.entry }" ng-click="main.entry=null">
+	<main>
+		<header>
+			<h2>{{ main.entry.title }}</h2>
+		</header>
+		<div ng-if="!!main.entry">
+			<iframe ng-src="{{ main.entry.link }}" frameborder="no"></iframe>
+		</div>
+	</main>
+</article>
